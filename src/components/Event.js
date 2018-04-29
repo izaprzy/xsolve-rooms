@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
-import { View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { ListItem, Body, Text } from 'native-base';
 import PropTypes from 'prop-types';
+
+const styles = StyleSheet.create({
+  titleText: {
+    fontWeight: 'bold',
+  },
+});
 
 class Event extends Component {
   renderMeetingTimeframe() {
@@ -12,11 +18,19 @@ class Event extends Component {
     return <View />;
   }
 
+  renderRoomName() {
+    if (this.props.showRoomName) {
+      return <Text style={styles.titleText}>{this.props.item.location}</Text>
+    }
+    return <View/>
+  }
+
   render() {
     const { summary } = this.props.item;
     return (
       <ListItem>
         <Body>
+          {this.renderRoomName()}
           <Text>{summary}</Text>
           {this.renderMeetingTimeframe()}
         </Body>

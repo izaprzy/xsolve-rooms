@@ -21,9 +21,9 @@ class Events {
       });
 
       const events = _.reduce(response.data.items, (result, item) => {
-        const { start, end, summary } = item;
+        const { start, end, summary, attendees, location } = item;
         if (start) {
-          result.push({ start: moment(start.dateTime).format('HH:mm'), end: moment(end.dateTime).format('HH:mm'), summary });
+          result.push({ start: moment(start.dateTime).format('HH:mm'), end: moment(end.dateTime).format('HH:mm'), summary, attendees, location });
         }
         return result;
       }, []);
